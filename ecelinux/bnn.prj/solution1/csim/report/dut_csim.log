@@ -1,0 +1,9 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../bnn_test.cpp in release mode
+   Compiling ../../../../bnn.cpp in release mode
+   Generating csim.exe
+Accuracy: 0.9
+digirec BNN         :      1 calls; 1126.774 msecs total time
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************
