@@ -10142,45 +10142,68 @@ void initialize_padded_memory(bit input[M][I][I]) {
     }
   }
 }
-# 62 "./layer.h"
-template <int M, int N, int I>
+# 90 "./layer.h"
+# 1 "/opt/xilinx/Vivado/2019.2/common/technology/autopilot/ap_int.h" 1
+# 91 "./layer.h" 2
+
+
+template <int M, int N, int I, int F>
 void conv(bit input[M][I][I], bit output[N][I - F + 1][I - F + 1],
           const bit8_t threshold[N], const bit weight[M][N][F][F]) {
-#pragma HLS ARRAY_PARTITION variable=&input block factor=10 dim=2
-# 64 "./layer.h"
+    const int O = I - F + 1;
+    const int num_accum = F * F * M;
 
-#pragma HLS ARRAY_PARTITION variable=&input block factor=10 dim=3
-# 64 "./layer.h"
 
-#pragma HLS ARRAY_PARTITION variable=&output block factor=8 dim=2
-# 64 "./layer.h"
+#pragma HLS ARRAY_PARTITION variable=&input complete dim=1
+#pragma HLS ARRAY_PARTITION variable=&weight complete dim=1
 
-  int num_accum = F * F * M;
-  conv_outer_loop:
-  for (int n = 0; n < N; n++) {
-    for (int x = 0; x < I - F + 1; x++) {
-      conv_y_loop:
-      for (int y = 0; y < I - F + 1; y++) {
+
+#pragma HLS DATAFLOW
+
+ conv_n_loop:
+    for (int n = 0; n < N; n++) {
+        conv_x_loop:
+        for (int x = 0; x < O; x++) {
+            conv_y_loop:
+            for (int y = 0; y < O; y++) {
 #pragma HLS PIPELINE II=1
-# 70 "./layer.h"
 
-        bit16_t accum = 0;
-        conv_c_loop:
-        for (int c = 0; c < F; c++) {
-          for (int r = 0; r < F; r++) {
-            conv_m_loop:
-            for (int m = 0; m < M; m++) {
-              accum += input[m][y + r][x + c] == weight[m][n][r][c];
+ bit16_t accum_m[M];
+#pragma HLS ARRAY_PARTITION variable=&accum_m complete dim=1
+
+
+ for (int m = 0; m < M; m++) {
+#pragma HLS UNROLL
+ accum_m[m] = 0;
+                }
+
+
+                for (int r = 0; r < F; r++) {
+#pragma HLS UNROLL
+ for (int c = 0; c < F; c++) {
+#pragma HLS UNROLL
+ for (int m = 0; m < M; m++) {
+#pragma HLS UNROLL
+ accum_m[m] += input[m][y + r][x + c] == weight[m][n][r][c];
+                        }
+                    }
+                }
+
+
+                bit16_t accum = 0;
+                for (int i = 0; i < M; i++) {
+#pragma HLS UNROLL
+ accum += accum_m[i];
+                }
+
+
+                accum = (accum << 1) - num_accum;
+                output[n][y][x] = accum > threshold[n] ? 1 : 0;
             }
-          }
         }
-        accum = (accum << 1) - num_accum;
-        output[n][y][x] = accum > threshold[n] ? 1 : 0;
-      }
     }
-  }
 }
-# 95 "./layer.h"
+# 158 "./layer.h"
 template <int M, int I>
 void max_pool(bit input[M][I][I], bit output[M][I / 2][I / 2]) {
   max_pool_m_loop:
@@ -10218,22 +10241,10 @@ void flatten(bit input[O_CHANNEL2][O_WIDTH][O_WIDTH], bit output[I_UNITS1]) {_ss
     }
   }
 }
-# 140 "./layer.h"
+# 203 "./layer.h"
 template <int M> void sign(bit16_t input[M], bit output[M]) {
-#pragma HLS ARRAY_PARTITION variable=&input complete dim=1
-# 140 "./layer.h"
-
-#pragma HLS ARRAY_PARTITION variable=&output complete dim=1
-# 140 "./layer.h"
-
-#pragma HLS INLINE
-# 140 "./layer.h"
-
   sign_loop:
   for (int m = 0; m < M; m++) {
-#pragma HLS UNROLL
-# 142 "./layer.h"
-
     output[m] = (input[m] > 0) ? 1 : 0;
   }
 }
@@ -10245,19 +10256,10 @@ template <int M> void sign(bit16_t input[M], bit output[M]) {
 
 
 bit4_t argmax(bit16_t input[NUM_DIGITS]) {_ssdm_SpecArrayDimSize(input, 10);
-#pragma HLS ARRAY_PARTITION variable=&input complete dim=1
-# 153 "./layer.h"
-
-#pragma HLS INLINE
-# 153 "./layer.h"
-
   bit16_t max = input[0];
   bit4_t max_id = 0;
   argmax_loop:
   for (int i = 1; i < NUM_DIGITS; i++) {
-#pragma HLS UNROLL
-# 157 "./layer.h"
-
     if (input[i] > max) {
       max = input[i];
       max_id = i;
@@ -10265,14 +10267,14 @@ bit4_t argmax(bit16_t input[NUM_DIGITS]) {_ssdm_SpecArrayDimSize(input, 10);
   }
   return max_id;
 }
-# 175 "./layer.h"
+# 238 "./layer.h"
 template <int M, int N>
 void dense(bit input[M], bit16_t output[N], const bit weight[M][N]) {
 #pragma HLS ARRAY_PARTITION variable=&weight complete dim=2
-# 176 "./layer.h"
+# 239 "./layer.h"
 
 #pragma HLS INLINE region off
-# 176 "./layer.h"
+# 239 "./layer.h"
 
   dense_outer_loop:
   for (int n = 0; n < N; n++) {
@@ -10280,7 +10282,7 @@ void dense(bit input[M], bit16_t output[N], const bit weight[M][N]) {
     dense_inner_loop:
     for (int m = 0; m < M; m++) {
 #pragma HLS PIPELINE II=1
-# 181 "./layer.h"
+# 244 "./layer.h"
 
       int w_index = m * N + n;
       accum += input[m] == weight[m][n];

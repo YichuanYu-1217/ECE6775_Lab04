@@ -7,7 +7,7 @@
 source /opt/xilinx/Vivado/2019.2/scripts/vivado_hls/hls.tcl -notrace
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/xilinx/Vivado/2019.2/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'yy2297' on host 'en-ec-rhel-ecelinux-01.coecis.cornell.edu' (Linux_x86_64 version 4.18.0-553.16.1.el8_10.x86_64) on Mon Nov 04 12:21:25 EST 2024
+INFO: [HLS 200-10] For user 'yy2297' on host 'en-ec-rhel-ecelinux-19.coecis.cornell.edu' (Linux_x86_64 version 4.18.0-553.22.1.el8_10.x86_64) on Wed Nov 06 12:02:46 EST 2024
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
 INFO: [HLS 200-10] In directory '/home/yy2297/ece6775/lab4/ecelinux'
 Sourcing Tcl script 'run.tcl'
@@ -25,107 +25,51 @@ INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
    Compiling ../../../../bnn.cpp in release mode
    Generating csim.exe
 Accuracy: 0.9
-digirec BNN         :      1 calls; 1123.923 msecs total time
+digirec BNN         :      1 calls; 1303.318 msecs total time
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
 INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
 INFO: [HLS 200-10] Analyzing design file 'bnn.cpp' ... 
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 1765 ; free virtual = 6756
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 1765 ; free virtual = 6756
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region: ./layer.h:106:2
+WARNING: [HLS 200-471] Dataflow form checks found 1 issue(s) in file bnn.cpp
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 5491 ; free virtual = 26809
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 5491 ; free virtual = 26809
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [XFORM 203-603] Inlining function 'sign<256>' into 'bnn_xcel' (bnn.cpp:80).
-INFO: [XFORM 203-603] Inlining function 'argmax' into 'bnn_xcel' (bnn.cpp:82).
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 1713 ; free virtual = 6705
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.2' (./layer.h:118) in function 'void conv<1, 16, 18, 3>(bool (*) [FORWARD_REFERENCE][FORWARD_REFERENCE], bool (*) [((FORWARD_REFERENCE) - (FORWARD_REFERENCE)) + (1)][((FORWARD_REFERENCE) - (FORWARD_REFERENCE)) + (1)], ap_int<8> const*, bool const (*) [FORWARD_REFERENCE][FORWARD_REFERENCE][FORWARD_REFERENCE])' completely with a factor of 1.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.3.1.1' (./layer.h:128) in function 'void conv<1, 16, 18, 3>(bool (*) [FORWARD_REFERENCE][FORWARD_REFERENCE], bool (*) [((FORWARD_REFERENCE) - (FORWARD_REFERENCE)) + (1)][((FORWARD_REFERENCE) - (FORWARD_REFERENCE)) + (1)], ap_int<8> const*, bool const (*) [FORWARD_REFERENCE][FORWARD_REFERENCE][FORWARD_REFERENCE])' completely with a factor of 1.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.4' (./layer.h:137) in function 'void conv<1, 16, 18, 3>(bool (*) [FORWARD_REFERENCE][FORWARD_REFERENCE], bool (*) [((FORWARD_REFERENCE) - (FORWARD_REFERENCE)) + (1)][((FORWARD_REFERENCE) - (FORWARD_REFERENCE)) + (1)], ap_int<8> const*, bool const (*) [FORWARD_REFERENCE][FORWARD_REFERENCE][FORWARD_REFERENCE])' completely with a factor of 1.
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 4489 ; free virtual = 26434
 INFO: [HLS 200-10] Checking synthesizability ...
 INFO: [XFORM 203-602] Inlining function 'dense<512, 256>' into 'bnn_xcel' (bnn.cpp:79) automatically.
+INFO: [XFORM 203-602] Inlining function 'sign<256>' into 'bnn_xcel' (bnn.cpp:80) automatically.
 INFO: [XFORM 203-602] Inlining function 'dense<256, 10>' into 'bnn_xcel' (bnn.cpp:81) automatically.
+INFO: [XFORM 203-602] Inlining function 'argmax' into 'bnn_xcel' (bnn.cpp:82) automatically.
 WARNING: [SYNCHK 200-23] bnn.cpp:29: variable-indexed range selection may cause suboptimal QoR.
 INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 1703 ; free virtual = 6696
-INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'conv_y_loop' (./layer.h:70) in function 'conv<16, 32, 10>' for pipelining.
-INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'conv_y_loop' (./layer.h:70) in function 'conv<1, 16, 18>' for pipelining.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 4588 ; free virtual = 26535
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'conv_y_loop' (./layer.h:111) in function 'conv<16, 32, 10, 3>' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'conv_y_loop' (./layer.h:111) in function 'conv<1, 16, 18, 3>' for pipelining.
 INFO: [XFORM 203-502] Unrolling small iteration loop 'pad_loop_m' (./layer.h:22) in function 'pad<1, 16>' automatically.
 INFO: [XFORM 203-502] Unrolling small iteration loop 'init_loop_m' (./layer.h:41) in function 'initialize_padded_memory<1, 18, 1>' automatically.
-INFO: [HLS 200-489] Unrolling loop 'sign_loop' (./layer.h:142) in function 'bnn_xcel' completely with a factor of 256.
-INFO: [HLS 200-489] Unrolling loop 'argmax_loop' (./layer.h:157) in function 'bnn_xcel' completely with a factor of 9.
-INFO: [HLS 200-489] Unrolling loop 'conv_c_loop' (./layer.h:73) in function 'conv<16, 32, 10>' completely with a factor of 3.
-INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1.1' (./layer.h:74) in function 'conv<16, 32, 10>' completely with a factor of 3.
-INFO: [HLS 200-489] Unrolling loop 'conv_m_loop' (./layer.h:76) in function 'conv<16, 32, 10>' completely with a factor of 16.
-INFO: [HLS 200-489] Unrolling loop 'conv_c_loop' (./layer.h:73) in function 'conv<1, 16, 18>' completely with a factor of 3.
-INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1.1' (./layer.h:74) in function 'conv<1, 16, 18>' completely with a factor of 3.
-INFO: [HLS 200-489] Unrolling loop 'conv_m_loop' (./layer.h:76) in function 'conv<1, 16, 18>' completely with a factor of 1.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1' (./layer.h:118) in function 'conv<16, 32, 10, 3>' completely with a factor of 16.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.2' (./layer.h:124) in function 'conv<16, 32, 10, 3>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.2.1' (./layer.h:126) in function 'conv<16, 32, 10, 3>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.2.1.1' (./layer.h:128) in function 'conv<16, 32, 10, 3>' completely with a factor of 16.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.3' (./layer.h:137) in function 'conv<16, 32, 10, 3>' completely with a factor of 16.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1' (./layer.h:124) in function 'conv<1, 16, 18, 3>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1.1' (./layer.h:126) in function 'conv<1, 16, 18, 3>' completely with a factor of 3.
 INFO: [HLS 200-489] Unrolling loop 'pad_loop_m' (./layer.h:22) in function 'pad<1, 16>' completely with a factor of 1.
 INFO: [HLS 200-489] Unrolling loop 'init_loop_m' (./layer.h:41) in function 'initialize_padded_memory<1, 18, 1>' completely with a factor of 1.
-INFO: [XFORM 203-102] Partitioning array 'weight.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.0.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.0.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.0.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.3' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.4' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.5' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.6' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.7' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.8' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.9' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.10' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.11' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.12' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.13' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.14' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.15' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.0.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.0.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.0.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.1.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.1.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.1.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.2.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.2.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.2.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.3.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.3.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.3.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.4.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.4.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.4.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.5.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.5.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.5.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.6.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.6.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.6.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.7.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.7.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.7.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.8.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.8.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.8.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.9.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.9.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.9.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.10.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.10.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.10.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.11.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.11.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.11.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.12.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.12.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.12.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.13.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.13.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.13.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.14.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.14.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.14.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.15.0' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.15.1' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'weight.15.2' in dimension 2 automatically.
 INFO: [XFORM 203-102] Partitioning array 'input' (bnn.cpp:20) in dimension 1 automatically.
-INFO: [XFORM 203-102] Partitioning array 'w_conv2' in dimension 1 automatically.
+INFO: [XFORM 203-101] Partitioning array 'w_fc2'  in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'w_fc1'  in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv1_pooled_padded' (bnn.cpp:51) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'w_conv2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'accum_m.V' (./layer.h:114) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'w_conv1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'accum_m.V' (./layer.h:114) in dimension 1 completely.
+WARNING: [XFORM 203-104] Completely partitioning array 'w_fc1'  accessed through non-constant indices on dimension 2 (./layer.h:246:7), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
 INFO: [XFORM 203-102] Partitioning array 'w_conv2.0' in dimension 2 automatically.
 INFO: [XFORM 203-102] Partitioning array 'w_conv2.0.0' in dimension 2 automatically.
 INFO: [XFORM 203-102] Partitioning array 'w_conv2.0.1' in dimension 2 automatically.
@@ -190,452 +134,868 @@ INFO: [XFORM 203-102] Partitioning array 'w_conv2.15' in dimension 2 automatical
 INFO: [XFORM 203-102] Partitioning array 'w_conv2.15.0' in dimension 2 automatically.
 INFO: [XFORM 203-102] Partitioning array 'w_conv2.15.1' in dimension 2 automatically.
 INFO: [XFORM 203-102] Partitioning array 'w_conv2.15.2' in dimension 2 automatically.
-INFO: [XFORM 203-102] Partitioning array 'w_conv1' in dimension 1 automatically.
 INFO: [XFORM 203-102] Partitioning array 'w_conv1.0' in dimension 2 automatically.
 INFO: [XFORM 203-102] Partitioning array 'w_conv1.0.0' in dimension 2 automatically.
 INFO: [XFORM 203-102] Partitioning array 'w_conv1.0.1' in dimension 2 automatically.
 INFO: [XFORM 203-102] Partitioning array 'w_conv1.0.2' in dimension 2 automatically.
-INFO: [XFORM 203-101] Partitioning array 'dense1.V'  in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'signed1' (bnn.cpp:60) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'dense2.V'  in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'w_fc2'  in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'w_fc1'  in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'conv1_pooled_padded' (bnn.cpp:51) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'conv2' (bnn.cpp:55) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded' (bnn.cpp:47) in dimension 2 with a block factor 10.
-INFO: [XFORM 203-101] Partitioning array 'conv1' (bnn.cpp:49) in dimension 2 with a block factor 8.
-INFO: [XFORM 203-101] Partitioning array 'conv1_pooled_padded' (bnn.cpp:51) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded' (bnn.cpp:47) in dimension 3 with a block factor 10.
-WARNING: [XFORM 203-104] Completely partitioning array 'signed1' (bnn.cpp:60) accessed through non-constant indices on dimension 1 (./layer.h:183:7), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
-WARNING: [XFORM 203-104] Completely partitioning array 'dense1.V'  accessed through non-constant indices on dimension 1 (./layer.h:185:18), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
-WARNING: [XFORM 203-104] Completely partitioning array 'w_fc1'  accessed through non-constant indices on dimension 2 (./layer.h:183:7), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.0' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.1' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.2' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.3' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.4' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.5' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.6' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.7' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.8' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.9' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.0' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.1' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.2' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.3' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.4' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.5' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.6' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.7' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.8' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.9' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.0' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.1' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.2' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.3' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.4' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.5' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.6' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.7' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.8' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.9' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.0' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.1' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.2' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.3' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.4' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.5' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.6' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.7' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.8' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.9' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.0' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.1' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.2' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.3' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.4' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.5' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.6' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.7' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.8' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.9' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.0' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.1' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.2' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.3' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.4' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.5' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.6' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.7' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.8' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.9' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.0' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.1' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.2' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.3' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.4' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.5' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.6' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.7' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.8' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.9' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.0' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.1' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.2' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.3' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.4' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.5' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.6' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.7' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.8' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.9' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.0' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.1' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.2' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.3' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.4' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.5' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.6' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.7' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.8' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.9' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.0' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.1' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.2' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.3' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.4' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.5' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.6' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.7' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.8' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.9' (bnn.cpp:47) completely based on array size.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.0' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.1' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.2' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.3' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.4' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.5' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.6' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.7' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.8' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.9' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.0' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.1' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.2' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.3' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.4' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.5' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.6' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.7' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.8' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.9' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.0' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.1' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.2' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.3' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.4' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.5' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.6' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.7' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.8' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.9' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.0' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.1' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.2' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.3' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.4' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.5' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.6' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.7' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.8' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.9' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.0' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.1' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.2' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.3' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.4' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.5' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.6' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.7' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.8' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.9' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.0' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.1' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.2' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.3' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.4' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.5' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.6' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.7' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.8' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.9' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.0' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.1' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.2' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.3' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.4' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.5' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.6' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.7' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.8' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.9' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.0' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.1' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.2' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.3' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.4' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.5' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.6' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.7' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.8' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.9' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.0' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.1' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.2' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.3' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.4' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.5' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.6' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.7' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.8' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.9' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.0' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.1' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.2' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.3' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.4' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.5' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.6' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.7' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.8' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.9' (bnn.cpp:47) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.0' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.1' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.2' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.3' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.4' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.5' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.6' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.7' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.8' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.9' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.0' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.1' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.2' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.3' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.4' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.5' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.6' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.7' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.8' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.9' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.0' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.1' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.2' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.3' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.4' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.5' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.6' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.7' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.8' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.9' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.0' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.1' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.2' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.3' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.4' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.5' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.6' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.7' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.8' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.9' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.0' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.1' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.2' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.3' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.4' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.5' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.6' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.7' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.8' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.9' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.0' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.1' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.2' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.3' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.4' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.5' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.6' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.7' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.8' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.9' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.0' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.1' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.2' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.3' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.4' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.5' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.6' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.7' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.8' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.9' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.0' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.1' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.2' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.3' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.4' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.5' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.6' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.7' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.8' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.9' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.0' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.1' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.2' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.3' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.4' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.5' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.6' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.7' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.8' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.9' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.0' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.1' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.2' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.3' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.4' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.5' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.6' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.7' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.8' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.9' (bnn.cpp:47) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.0' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.1' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.2' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.3' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.4' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.5' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.6' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.7' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.8' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.0.9' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.0' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.1' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.2' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.3' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.4' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.5' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.6' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.7' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.8' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.1.9' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.0' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.1' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.2' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.3' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.4' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.5' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.6' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.7' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.8' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.2.9' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.0' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.1' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.2' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.3' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.4' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.5' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.6' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.7' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.8' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.3.9' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.0' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.1' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.2' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.3' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.4' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.5' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.6' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.7' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.8' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.4.9' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.0' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.1' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.2' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.3' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.4' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.5' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.6' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.7' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.8' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.5.9' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.0' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.1' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.2' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.3' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.4' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.5' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.6' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.7' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.8' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.6.9' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.0' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.1' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.2' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.3' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.4' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.5' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.6' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.7' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.8' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.7.9' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.0' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.1' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.2' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.3' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.4' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.5' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.6' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.7' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.8' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.8.9' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.0' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.1' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.2' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.3' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.4' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.5' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.6' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.7' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.8' (bnn.cpp:47) in dimension 3 completely.
-INFO: [XFORM 203-101] Partitioning array 'input_padded.9.9' (bnn.cpp:47) in dimension 3 completely.
-WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[0]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
-WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[1]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
-WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[2]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
-WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[3]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
-WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[4]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
-WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[5]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
-WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[6]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
-WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[7]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
-INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (./layer.h:26:36) in function 'pad<1, 16>'... converting 254 basic blocks.
-INFO: [XFORM 203-603] Inlining function 'aesl_mux_load.256[512 x i1]P.i8.i64' into 'dense<512, 256>' (./layer.h:183).
-INFO: [XFORM 203-603] Inlining function 'aesl_mux_load.10[256 x i1]P.i4.i64' into 'dense<256, 10>' (./layer.h:183).
 INFO: [XFORM 203-602] Inlining function 'initialize_padded_memory<1, 18, 1>' into 'bnn_xcel' (bnn.cpp:48) automatically.
-INFO: [XFORM 203-11] Balancing expressions in function 'conv<16, 32, 10>' (./layer.h:63)...143 expression(s) balanced.
-INFO: [XFORM 203-11] Balancing expressions in function 'conv<1, 16, 18>' (./layer.h:63)...8 expression(s) balanced.
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:07:01 ; elapsed = 00:07:07 . Memory (MB): peak = 1616.152 ; gain = 978.125 ; free physical = 1338 ; free virtual = 6348
-WARNING: [XFORM 203-542] Cannot flatten a loop nest 'dense_outer_loop' (./layer.h:178:32) in function 'dense<512, 256>' : 
-
-the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
-WARNING: [XFORM 203-542] Cannot flatten a loop nest 'dense_outer_loop' (./layer.h:178:32) in function 'dense<256, 10>' : 
-
-the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
-INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1.1' (./layer.h:68:19) in function 'conv<16, 32, 10>'.
-INFO: [XFORM 203-541] Flattening a loop nest 'conv_outer_loop' (./layer.h:67:32) in function 'conv<16, 32, 10>'.
-INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1.1' (./layer.h:68:19) in function 'conv<1, 16, 18>'.
-INFO: [XFORM 203-541] Flattening a loop nest 'conv_outer_loop' (./layer.h:67:32) in function 'conv<1, 16, 18>'.
+INFO: [XFORM 203-602] Inlining function 'pad<1, 16>' into 'bnn_xcel' (bnn.cpp:65) automatically.
+INFO: [XFORM 203-602] Inlining function 'dense<512, 256>' into 'bnn_xcel' (bnn.cpp:79) automatically.
+INFO: [XFORM 203-602] Inlining function 'sign<256>' into 'bnn_xcel' (bnn.cpp:80) automatically.
+INFO: [XFORM 203-602] Inlining function 'dense<256, 10>' into 'bnn_xcel' (bnn.cpp:81) automatically.
+INFO: [XFORM 203-602] Inlining function 'argmax' into 'bnn_xcel' (bnn.cpp:82) automatically.
+INFO: [XFORM 203-721] Changing loop 'Loop_conv_n_loop_proc' (./layer.h:107) to a process function for dataflow in function 'conv<1, 16, 18, 3>'.
+INFO: [XFORM 203-721] Changing loop 'Loop_conv_n_loop_proc' (./layer.h:107) to a process function for dataflow in function 'conv<16, 32, 10, 3>'.
+WARNING: [XFORM 203-713] All the elements of global array 'output' should be updated in process function 'conv<1, 16, 18, 3>_Loop_conv_n_loop_proc', otherwise it may not be synthesized correctly.
+WARNING: [XFORM 203-713] All the elements of global array 'output' should be updated in process function 'conv<16, 32, 10, 3>_Loop_conv_n_loop_proc', otherwise it may not be synthesized correctly.
+INFO: [XFORM 203-712] Applying dataflow to function 'conv<1, 16, 18, 3>', detected/extracted 1 process function(s): 
+	 'conv<1, 16, 18, 3>_Loop_conv_n_loop_proc'.
+INFO: [XFORM 203-712] Applying dataflow to function 'conv<16, 32, 10, 3>', detected/extracted 1 process function(s): 
+	 'conv<16, 32, 10, 3>_Loop_conv_n_loop_proc'.
+INFO: [XFORM 203-603] Inlining function 'aesl_mux_load.256[512 x i1]P.i8.i64' into 'bnn_xcel' (./layer.h:246->bnn.cpp:79).
+INFO: [XFORM 203-603] Inlining function 'aesl_mux_load.10[256 x i1]P.i4.i64' into 'bnn_xcel' (./layer.h:246->bnn.cpp:81).
+INFO: [XFORM 203-11] Balancing expressions in function 'conv<16, 32, 10, 3>_Loop_conv_n_loop_proc' (./layer.h:107:2)...75 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'conv<1, 16, 18, 3>_Loop_conv_n_loop_proc' (./layer.h:107:36)...4 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:58 ; elapsed = 00:01:01 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 4643 ; free virtual = 26593
+INFO: [XFORM 203-541] Flattening a loop nest 'conv_x_loop' (./layer.h:109:38) in function 'conv<16, 32, 10, 3>_Loop_conv_n_loop_proc'.
+INFO: [XFORM 203-541] Flattening a loop nest 'conv_n_loop' (./layer.h:107:34) in function 'conv<16, 32, 10, 3>_Loop_conv_n_loop_proc'.
+INFO: [XFORM 203-541] Flattening a loop nest 'conv_x_loop' (./layer.h:109:38) in function 'conv<1, 16, 18, 3>_Loop_conv_n_loop_proc'.
+INFO: [XFORM 203-541] Flattening a loop nest 'conv_n_loop' (./layer.h:107:34) in function 'conv<1, 16, 18, 3>_Loop_conv_n_loop_proc'.
+INFO: [XFORM 203-541] Flattening a loop nest 'dense_outer_loop' (./layer.h:241:32) in function 'bnn_xcel'.
+INFO: [XFORM 203-541] Flattening a loop nest 'dense_outer_loop' (./layer.h:241:32) in function 'bnn_xcel'.
 WARNING: [XFORM 203-631] Renaming function 'initialize_padded_memory<16, 10, 0>' to 'initialize_padded_me' (./layer.h:41:30)
-Stack dump:
-0.	Running pass 'Synthesis info analysis' on module '/home/yy2297/ece6775/lab4/ecelinux/bnn.prj/solution1/.autopilot/db/a.o.2.bc'.
-Abnormal program termination (11)
-Please check '/home/yy2297/ece6775/lab4/ecelinux/hs_err_pid3061691.log' for details
+WARNING: [XFORM 203-631] Renaming function 'conv<16, 32, 10, 3>_Loop_conv_n_loop_proc' to 'conv_Loop_conv_n_loo' (./layer.h:107:2)
+WARNING: [XFORM 203-631] Renaming function 'conv<1, 16, 18, 3>_Loop_conv_n_loop_proc' to 'conv_Loop_conv_n_loo.1' (./layer.h:107:19)
+INFO: [HLS 200-472] Inferring partial write operation for 'output[0]' (./layer.h:27:9)
+INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:172:9)
+INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:172:9)
+INFO: [HLS 200-472] Inferring partial write operation for 'input[0]' (./layer.h:46:9)
+INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:190:9)
+INFO: [HLS 200-472] Inferring partial write operation for 'input[0]' (bnn.cpp:29:60)
+INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:144:35)
+INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:144:35)
+INFO: [HLS 200-472] Inferring partial write operation for 'input_padded[0]' (./layer.h:46:9)
+INFO: [HLS 200-472] Inferring partial write operation for 'input_padded[0]' (./layer.h:27:9)
+INFO: [HLS 200-472] Inferring partial write operation for 'dense1.V' (./layer.h:248:18)
+INFO: [HLS 200-472] Inferring partial write operation for 'signed1' (./layer.h:206:18)
+INFO: [HLS 200-472] Inferring partial write operation for 'dense2.V' (./layer.h:248:18)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:01:10 ; elapsed = 00:01:13 . Memory (MB): peak = 1296.152 ; gain = 658.125 ; free physical = 4460 ; free virtual = 26324
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'dut' ...
+WARNING: [SYN 201-103] Legalizing function name 'conv_Loop_conv_n_loo.1' to 'conv_Loop_conv_n_loo_1'.
+WARNING: [SYN 201-103] Legalizing function name 'conv<1, 16, 18, 3>' to 'conv_1_16_18_3_s'.
+WARNING: [SYN 201-103] Legalizing function name 'max_pool<16, 16>' to 'max_pool_16_16_s'.
+WARNING: [SYN 201-103] Legalizing function name 'pad<16, 8>' to 'pad_16_8_s'.
+WARNING: [SYN 201-103] Legalizing function name 'conv<16, 32, 10, 3>' to 'conv_16_32_10_3_s'.
+WARNING: [SYN 201-103] Legalizing function name 'max_pool<32, 8>' to 'max_pool_32_8_s'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'initialize_padded_me' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 73.64 seconds; current allocated memory: 303.255 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 303.652 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'conv_Loop_conv_n_loo_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'conv_n_loop_conv_x_loop_conv_y_loop'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('input_load_2', ./layer.h:130) on array 'input_r' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'input_r'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 8.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 304.206 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 304.838 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'conv_1_16_18_3_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.23 seconds; current allocated memory: 304.986 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.05 seconds; current allocated memory: 305.044 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'max_pool_16_16_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 305.283 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 305.518 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'pad_16_8_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 305.790 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 306.213 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'conv_Loop_conv_n_loo' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'conv_n_loop_conv_x_loop_conv_y_loop'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('input_0_load_2', ./layer.h:130) on array 'input_0' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'input_0'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 10.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 1.44 seconds; current allocated memory: 309.774 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.71 seconds; current allocated memory: 314.884 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'conv_16_32_10_3_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 1.82 seconds; current allocated memory: 315.374 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 315.879 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'max_pool_32_8_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.37 seconds; current allocated memory: 316.419 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 316.653 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'flatten' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 316.803 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 316.972 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'bnn_xcel' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'dense_outer_loop_dense_inner_loop'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-61] Pipelining loop 'dense_outer_loop_dense_inner_loop'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.83 seconds; current allocated memory: 320.714 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 3 seconds; current allocated memory: 320.348 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dut' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 2.1 seconds; current allocated memory: 321.232 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.6 seconds; current allocated memory: 322.549 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'initialize_padded_me' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'initialize_padded_me'.
+INFO: [HLS 200-111]  Elapsed time: 0.83 seconds; current allocated memory: 323.582 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'conv_Loop_conv_n_loo_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_1_threshold_conv1_V' to 'conv_Loop_conv_n_bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_1_w_conv1_0_0_0' to 'conv_Loop_conv_n_cud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_1_w_conv1_0_0_1' to 'conv_Loop_conv_n_dEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_1_w_conv1_0_0_2' to 'conv_Loop_conv_n_eOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_1_w_conv1_0_1_0' to 'conv_Loop_conv_n_fYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_1_w_conv1_0_1_1' to 'conv_Loop_conv_n_g8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_1_w_conv1_0_1_2' to 'conv_Loop_conv_n_hbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_1_w_conv1_0_2_0' to 'conv_Loop_conv_n_ibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_1_w_conv1_0_2_1' to 'conv_Loop_conv_n_jbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_1_w_conv1_0_2_2' to 'conv_Loop_conv_n_kbM' due to the length limit 20
+INFO: [RTGEN 206-100] Finished creating RTL model for 'conv_Loop_conv_n_loo_1'.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 326.250 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'conv_1_16_18_3_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'conv_1_16_18_3_s'.
+INFO: [HLS 200-111]  Elapsed time: 0.38 seconds; current allocated memory: 329.102 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'max_pool_16_16_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'max_pool_16_16_s'.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 329.706 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'pad_16_8_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'pad_16_8_s'.
+INFO: [HLS 200-111]  Elapsed time: 0.14 seconds; current allocated memory: 331.172 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'conv_Loop_conv_n_loo' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_threshold_conv2_V' to 'conv_Loop_conv_n_lbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_0_0_0' to 'conv_Loop_conv_n_mb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_1_0_0' to 'conv_Loop_conv_n_ncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_2_0_0' to 'conv_Loop_conv_n_ocq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_3_0_0' to 'conv_Loop_conv_n_pcA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_4_0_0' to 'conv_Loop_conv_n_qcK' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_5_0_0' to 'conv_Loop_conv_n_rcU' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_6_0_0' to 'conv_Loop_conv_n_sc4' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_7_0_0' to 'conv_Loop_conv_n_tde' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_8_0_0' to 'conv_Loop_conv_n_udo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_9_0_0' to 'conv_Loop_conv_n_vdy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_10_0_0' to 'conv_Loop_conv_n_wdI' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_11_0_0' to 'conv_Loop_conv_n_xdS' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_12_0_0' to 'conv_Loop_conv_n_yd2' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_13_0_0' to 'conv_Loop_conv_n_zec' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_14_0_0' to 'conv_Loop_conv_n_Aem' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_15_0_0' to 'conv_Loop_conv_n_Bew' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_0_0_1' to 'conv_Loop_conv_n_CeG' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_1_0_1' to 'conv_Loop_conv_n_DeQ' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_2_0_1' to 'conv_Loop_conv_n_Ee0' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_3_0_1' to 'conv_Loop_conv_n_Ffa' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_4_0_1' to 'conv_Loop_conv_n_Gfk' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_5_0_1' to 'conv_Loop_conv_n_Hfu' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_6_0_1' to 'conv_Loop_conv_n_IfE' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_7_0_1' to 'conv_Loop_conv_n_JfO' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_8_0_1' to 'conv_Loop_conv_n_KfY' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_9_0_1' to 'conv_Loop_conv_n_Lf8' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_10_0_1' to 'conv_Loop_conv_n_Mgi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_11_0_1' to 'conv_Loop_conv_n_Ngs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_12_0_1' to 'conv_Loop_conv_n_OgC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_13_0_1' to 'conv_Loop_conv_n_PgM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_14_0_1' to 'conv_Loop_conv_n_QgW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_15_0_1' to 'conv_Loop_conv_n_Rg6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_0_0_2' to 'conv_Loop_conv_n_Shg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_1_0_2' to 'conv_Loop_conv_n_Thq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_2_0_2' to 'conv_Loop_conv_n_UhA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_3_0_2' to 'conv_Loop_conv_n_VhK' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_4_0_2' to 'conv_Loop_conv_n_WhU' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_5_0_2' to 'conv_Loop_conv_n_Xh4' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_6_0_2' to 'conv_Loop_conv_n_Yie' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_7_0_2' to 'conv_Loop_conv_n_Zio' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_8_0_2' to 'conv_Loop_conv_n_0iy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_9_0_2' to 'conv_Loop_conv_n_1iI' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_10_0_2' to 'conv_Loop_conv_n_2iS' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_11_0_2' to 'conv_Loop_conv_n_3i2' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_12_0_2' to 'conv_Loop_conv_n_4jc' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_13_0_2' to 'conv_Loop_conv_n_5jm' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_14_0_2' to 'conv_Loop_conv_n_6jw' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_15_0_2' to 'conv_Loop_conv_n_7jG' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_0_1_0' to 'conv_Loop_conv_n_8jQ' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_1_1_0' to 'conv_Loop_conv_n_9j0' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_2_1_0' to 'conv_Loop_conv_n_bak' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_3_1_0' to 'conv_Loop_conv_n_bbk' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_4_1_0' to 'conv_Loop_conv_n_bck' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_5_1_0' to 'conv_Loop_conv_n_bdk' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_6_1_0' to 'conv_Loop_conv_n_bek' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_7_1_0' to 'conv_Loop_conv_n_bfk' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_8_1_0' to 'conv_Loop_conv_n_bgk' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_9_1_0' to 'conv_Loop_conv_n_bhl' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_10_1_0' to 'conv_Loop_conv_n_bil' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_11_1_0' to 'conv_Loop_conv_n_bjl' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_12_1_0' to 'conv_Loop_conv_n_bkl' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_13_1_0' to 'conv_Loop_conv_n_bll' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_14_1_0' to 'conv_Loop_conv_n_bml' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_15_1_0' to 'conv_Loop_conv_n_bnm' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_0_1_1' to 'conv_Loop_conv_n_bom' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_1_1_1' to 'conv_Loop_conv_n_bpm' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_2_1_1' to 'conv_Loop_conv_n_bqm' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_3_1_1' to 'conv_Loop_conv_n_brm' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_4_1_1' to 'conv_Loop_conv_n_bsm' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_5_1_1' to 'conv_Loop_conv_n_btn' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_6_1_1' to 'conv_Loop_conv_n_bun' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_7_1_1' to 'conv_Loop_conv_n_bvn' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_8_1_1' to 'conv_Loop_conv_n_bwn' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_9_1_1' to 'conv_Loop_conv_n_bxn' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_10_1_1' to 'conv_Loop_conv_n_byn' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_11_1_1' to 'conv_Loop_conv_n_bzo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_12_1_1' to 'conv_Loop_conv_n_bAo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_13_1_1' to 'conv_Loop_conv_n_bBo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_14_1_1' to 'conv_Loop_conv_n_bCo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_15_1_1' to 'conv_Loop_conv_n_bDo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_0_1_2' to 'conv_Loop_conv_n_bEo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_1_1_2' to 'conv_Loop_conv_n_bFp' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_2_1_2' to 'conv_Loop_conv_n_bGp' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_3_1_2' to 'conv_Loop_conv_n_bHp' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_4_1_2' to 'conv_Loop_conv_n_bIp' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_5_1_2' to 'conv_Loop_conv_n_bJp' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_6_1_2' to 'conv_Loop_conv_n_bKp' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_7_1_2' to 'conv_Loop_conv_n_bLp' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_8_1_2' to 'conv_Loop_conv_n_bMq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_9_1_2' to 'conv_Loop_conv_n_bNq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_10_1_2' to 'conv_Loop_conv_n_bOq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_11_1_2' to 'conv_Loop_conv_n_bPq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_12_1_2' to 'conv_Loop_conv_n_bQq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_13_1_2' to 'conv_Loop_conv_n_bRq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_14_1_2' to 'conv_Loop_conv_n_bSr' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_15_1_2' to 'conv_Loop_conv_n_bTr' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_0_2_0' to 'conv_Loop_conv_n_bUr' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_1_2_0' to 'conv_Loop_conv_n_bVr' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_2_2_0' to 'conv_Loop_conv_n_bWr' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_3_2_0' to 'conv_Loop_conv_n_bXr' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_4_2_0' to 'conv_Loop_conv_n_bYs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_5_2_0' to 'conv_Loop_conv_n_bZs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_6_2_0' to 'conv_Loop_conv_n_b0s' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_7_2_0' to 'conv_Loop_conv_n_b1s' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_8_2_0' to 'conv_Loop_conv_n_b2s' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_9_2_0' to 'conv_Loop_conv_n_b3s' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_10_2_0' to 'conv_Loop_conv_n_b4t' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_11_2_0' to 'conv_Loop_conv_n_b5t' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_12_2_0' to 'conv_Loop_conv_n_b6t' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_13_2_0' to 'conv_Loop_conv_n_b7t' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_14_2_0' to 'conv_Loop_conv_n_b8t' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_15_2_0' to 'conv_Loop_conv_n_b9t' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_0_2_1' to 'conv_Loop_conv_n_cau' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_1_2_1' to 'conv_Loop_conv_n_cbu' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_2_2_1' to 'conv_Loop_conv_n_ccu' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_3_2_1' to 'conv_Loop_conv_n_cdu' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_4_2_1' to 'conv_Loop_conv_n_ceu' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_5_2_1' to 'conv_Loop_conv_n_cfu' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_6_2_1' to 'conv_Loop_conv_n_cgu' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_7_2_1' to 'conv_Loop_conv_n_chv' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_8_2_1' to 'conv_Loop_conv_n_civ' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_9_2_1' to 'conv_Loop_conv_n_cjv' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_10_2_1' to 'conv_Loop_conv_n_ckv' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_11_2_1' to 'conv_Loop_conv_n_clv' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_12_2_1' to 'conv_Loop_conv_n_cmv' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_13_2_1' to 'conv_Loop_conv_n_cnw' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_14_2_1' to 'conv_Loop_conv_n_cow' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_15_2_1' to 'conv_Loop_conv_n_cpw' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_0_2_2' to 'conv_Loop_conv_n_cqw' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_1_2_2' to 'conv_Loop_conv_n_crw' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_2_2_2' to 'conv_Loop_conv_n_csw' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_3_2_2' to 'conv_Loop_conv_n_ctx' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_4_2_2' to 'conv_Loop_conv_n_cux' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_5_2_2' to 'conv_Loop_conv_n_cvx' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_6_2_2' to 'conv_Loop_conv_n_cwx' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_7_2_2' to 'conv_Loop_conv_n_cxx' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_8_2_2' to 'conv_Loop_conv_n_cyx' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_9_2_2' to 'conv_Loop_conv_n_czy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_10_2_2' to 'conv_Loop_conv_n_cAy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_11_2_2' to 'conv_Loop_conv_n_cBy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_12_2_2' to 'conv_Loop_conv_n_cCy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_13_2_2' to 'conv_Loop_conv_n_cDy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_14_2_2' to 'conv_Loop_conv_n_cEy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'conv_Loop_conv_n_loo_w_conv2_15_2_2' to 'conv_Loop_conv_n_cFz' due to the length limit 20
+INFO: [RTGEN 206-100] Finished creating RTL model for 'conv_Loop_conv_n_loo'.
+INFO: [HLS 200-111]  Elapsed time: 4.19 seconds; current allocated memory: 341.060 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'conv_16_32_10_3_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'conv_16_32_10_3_s'.
+INFO: [HLS 200-111]  Elapsed time: 2.85 seconds; current allocated memory: 362.517 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'max_pool_32_8_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'max_pool_32_8_s'.
+INFO: [HLS 200-111]  Elapsed time: 0.48 seconds; current allocated memory: 364.056 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'flatten' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'flatten'.
+INFO: [HLS 200-111]  Elapsed time: 0.23 seconds; current allocated memory: 365.427 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'bnn_xcel' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_input_padded_0' to 'bnn_xcel_input_pacGz' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled' to 'bnn_xcel_conv1_pocHz' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_s' to 'bnn_xcel_conv1_pocIz' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_1' to 'bnn_xcel_conv1_pocJz' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_2' to 'bnn_xcel_conv1_pocKz' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_3' to 'bnn_xcel_conv1_pocLz' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_4' to 'bnn_xcel_conv1_pocMA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_5' to 'bnn_xcel_conv1_pocNA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_6' to 'bnn_xcel_conv1_pocOA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_7' to 'bnn_xcel_conv1_pocPA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_8' to 'bnn_xcel_conv1_pocQA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_9' to 'bnn_xcel_conv1_pocRA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_10' to 'bnn_xcel_conv1_pocSB' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_11' to 'bnn_xcel_conv1_pocTB' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_12' to 'bnn_xcel_conv1_pocUB' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_13' to 'bnn_xcel_conv1_pocVB' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_14' to 'bnn_xcel_conv1_pocWB' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded_15' to 'bnn_xcel_conv1_pocXB' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv2_pooled' to 'bnn_xcel_conv2_pocYC' due to the length limit 20
+INFO: [RTGEN 206-100] Finished creating RTL model for 'bnn_xcel'.
+INFO: [HLS 200-111]  Elapsed time: 25.04 seconds; current allocated memory: 378.917 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dut' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/strm_in_V_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/strm_out_V_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'dut' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dut'.
+INFO: [HLS 200-111]  Elapsed time: 3.29 seconds; current allocated memory: 403.594 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 114.34 MHz
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bkb_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cud_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_dEe_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_eOg_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_fYi_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_g8j_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_hbi_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_ibs_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_jbC_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_kbM_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_lbW_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_mb6_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_ncg_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_ocq_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_pcA_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_qcK_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_rcU_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_sc4_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_tde_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_udo_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_vdy_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_wdI_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_xdS_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_yd2_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_zec_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Aem_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Bew_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_CeG_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_DeQ_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Ee0_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Ffa_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Gfk_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Hfu_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_IfE_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_JfO_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_KfY_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Lf8_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Mgi_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Ngs_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_OgC_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_PgM_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_QgW_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Rg6_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Shg_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Thq_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_UhA_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_VhK_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_WhU_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Xh4_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Yie_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_Zio_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_0iy_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_1iI_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_2iS_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_3i2_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_4jc_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_5jm_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_6jw_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_7jG_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_8jQ_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_9j0_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bak_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bbk_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bck_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bdk_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bek_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bfk_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bgk_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bhl_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bil_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bjl_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bkl_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bll_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bml_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bnm_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bom_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bpm_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bqm_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_brm_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bsm_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_btn_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bun_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bvn_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bwn_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bxn_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_byn_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bzo_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bAo_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bBo_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bCo_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bDo_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bEo_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bFp_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bGp_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bHp_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bIp_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bJp_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bKp_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bLp_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bMq_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bNq_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bOq_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bPq_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bQq_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bRq_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bSr_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bTr_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bUr_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bVr_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bWr_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bXr_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bYs_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_bZs_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_b0s_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_b1s_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_b2s_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_b3s_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_b4t_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_b5t_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_b6t_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_b7t_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_b8t_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_b9t_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cau_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cbu_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_ccu_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cdu_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_ceu_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cfu_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cgu_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_chv_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_civ_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cjv_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_ckv_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_clv_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cmv_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cnw_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cow_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cpw_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cqw_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_crw_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_csw_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_ctx_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cux_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cvx_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cwx_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cxx_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cyx_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_czy_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cAy_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cBy_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cCy_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cDy_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cEy_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'conv_Loop_conv_n_cFz_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_0_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_1_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_2_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_3_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_4_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_5_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_6_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_7_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_8_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_9_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_10_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_11_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_12_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_13_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_14_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_15_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_16_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_17_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_18_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_19_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_20_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_21_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_22_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_23_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_24_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_25_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_26_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_27_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_28_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_29_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_30_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_31_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_32_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_33_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_34_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_35_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_36_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_37_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_38_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_39_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_40_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_41_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_42_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_43_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_44_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_45_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_46_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_47_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_48_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_49_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_50_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_51_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_52_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_53_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_54_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_55_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_56_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_57_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_58_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_59_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_60_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_61_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_62_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_63_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_64_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_65_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_66_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_67_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_68_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_69_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_70_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_71_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_72_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_73_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_74_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_75_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_76_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_77_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_78_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_79_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_80_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_81_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_82_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_83_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_84_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_85_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_86_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_87_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_88_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_89_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_90_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_91_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_92_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_93_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_94_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_95_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_96_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_97_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_98_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_99_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_408_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_407_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_406_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_405_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_404_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_403_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_402_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_401_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_400_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_399_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_398_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_397_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_396_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_395_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_394_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_393_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_392_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_391_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_390_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_389_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_388_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_387_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_386_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_385_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_384_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_383_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_382_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_381_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_380_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_379_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_378_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_377_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_376_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_375_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_374_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_373_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_372_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_371_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_370_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_369_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_368_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_367_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_366_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_365_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_364_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_363_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_362_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_361_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_360_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_359_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_358_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_357_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_356_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_355_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_354_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_353_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_352_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_351_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_350_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_349_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_348_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_347_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_346_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_345_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_344_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_343_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_342_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_341_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_340_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_339_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_338_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_337_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_336_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_335_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_334_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_333_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_332_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_331_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_330_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_329_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_328_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_327_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_326_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_325_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_324_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_323_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_322_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_321_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_320_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_319_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_318_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_317_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_316_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_315_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_314_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_313_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_312_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_311_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_310_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_309_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_308_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_307_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_306_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_305_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_304_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_303_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_302_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_301_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_300_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_299_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_298_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_297_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_296_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_295_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_294_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_293_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_292_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_291_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_290_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_289_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_288_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_287_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_286_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_285_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_284_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_283_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_282_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_281_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_280_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_279_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_278_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_277_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_276_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_275_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_274_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_273_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_272_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_271_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_270_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_269_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_268_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_267_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_266_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_265_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_264_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_263_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_262_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_261_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_260_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_259_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_258_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_257_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_256_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_255_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_254_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_9_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_0_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_1_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_2_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_3_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_4_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_5_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_6_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_7_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_8_rom' using distributed ROMs.
+INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_input_pacGz_ram (RAM)' using distributed RAMs.
+INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_conv1_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_conv1_pocHz_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_conv1_pocIz_ram (RAM)' using distributed RAMs.
+INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_conv2_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_conv2_pocYC_ram (RAM)' using distributed RAMs.
+INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_dense1_V_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_signed1_ram (RAM)' using distributed RAMs.
+INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_dense2_V_ram (RAM)' using distributed RAMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:02:03 ; elapsed = 00:03:03 . Memory (MB): peak = 1440.156 ; gain = 802.129 ; free physical = 4211 ; free virtual = 26168
+INFO: [VHDL 208-304] Generating VHDL RTL for dut.
+INFO: [VLOG 209-307] Generating Verilog RTL for dut.
+INFO: [HLS 200-112] Total elapsed time: 182.6 seconds; peak allocated memory: 403.594 MB.
+INFO: [Common 17-206] Exiting vivado_hls at Wed Nov  6 12:05:48 2024...

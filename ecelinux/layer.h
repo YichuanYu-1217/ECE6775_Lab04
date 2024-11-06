@@ -59,32 +59,94 @@ void initialize_padded_memory(bit input[M][I][I]) {
 //              I - width of input fmaps
 //              weight - layer weights
 // @param[out] : output - output fmaps
-template <int M, int N, int I>
+// template <int M, int N, int I>
+// void conv(bit input[M][I][I], bit output[N][I - F + 1][I - F + 1],
+//           const bit8_t threshold[N], const bit weight[M][N][F][F]) {
+//   int num_accum = F * F * M;
+  
+//   conv_outer_loop:
+//   for (int n = 0; n < N; n++) {
+//     for (int x = 0; x < I - F + 1; x++) {
+//       conv_y_loop:
+//       for (int y = 0; y < I - F + 1; y++) {
+//         bit16_t accum = 0;
+//         conv_c_loop:
+//         for (int c = 0; c < F; c++) {
+//           for (int r = 0; r < F; r++) {
+//             conv_m_loop:
+//             for (int m = 0; m < M; m++) {
+//               accum += input[m][y + r][x + c] == weight[m][n][r][c];
+//             }
+//           }
+//         }
+//         accum = (accum << 1) - num_accum;
+//         output[n][y][x] = accum > threshold[n] ? 1 : 0;
+//       }
+//     }
+//   }
+// }
+
+
+#include <ap_int.h>
+#include "typedefs.h"
+
+template <int M, int N, int I, int F>
 void conv(bit input[M][I][I], bit output[N][I - F + 1][I - F + 1],
           const bit8_t threshold[N], const bit weight[M][N][F][F]) {
-  int num_accum = F * F * M;
-  
-  conv_outer_loop:
-  for (int n = 0; n < N; n++) {
-    for (int x = 0; x < I - F + 1; x++) {
-      conv_y_loop:
-      for (int y = 0; y < I - F + 1; y++) {
-        bit16_t accum = 0;
-        conv_c_loop:
-        for (int c = 0; c < F; c++) {
-          for (int r = 0; r < F; r++) {
-            conv_m_loop:
-            for (int m = 0; m < M; m++) {
-              accum += input[m][y + r][x + c] == weight[m][n][r][c];
+    const int O = I - F + 1;
+    const int num_accum = F * F * M;
+
+    // Partition arrays for parallel access
+    #pragma HLS ARRAY_PARTITION variable=input complete dim=1
+    #pragma HLS ARRAY_PARTITION variable=weight complete dim=1
+
+    // Apply dataflow optimization
+    #pragma HLS DATAFLOW
+
+    conv_n_loop:
+    for (int n = 0; n < N; n++) {
+        conv_x_loop:
+        for (int x = 0; x < O; x++) {
+            conv_y_loop:
+            for (int y = 0; y < O; y++) {
+                #pragma HLS PIPELINE II=1
+
+                bit16_t accum_m[M];
+                #pragma HLS ARRAY_PARTITION variable=accum_m complete dim=1
+
+                // Initialize and accumulate in one step
+                for (int m = 0; m < M; m++) {
+                    #pragma HLS UNROLL
+                    accum_m[m] = 0;
+                }
+
+                // Fully unrolled convolution computation
+                for (int r = 0; r < F; r++) {
+                    #pragma HLS UNROLL
+                    for (int c = 0; c < F; c++) {
+                        #pragma HLS UNROLL
+                        for (int m = 0; m < M; m++) {
+                            #pragma HLS UNROLL
+                            accum_m[m] += input[m][y + r][x + c] == weight[m][n][r][c];
+                        }
+                    }
+                }
+
+                // Efficient accumulation using reduction tree
+                bit16_t accum = 0;
+                for (int i = 0; i < M; i++) {
+                    #pragma HLS UNROLL
+                    accum += accum_m[i];
+                }
+
+                // Apply threshold and produce output
+                accum = (accum << 1) - num_accum;
+                output[n][y][x] = accum > threshold[n] ? 1 : 0;
             }
-          }
         }
-        accum = (accum << 1) - num_accum;
-        output[n][y][x] = accum > threshold[n] ? 1 : 0;
-      }
     }
-  }
 }
+
 
 //----------------------------------------------------------
 // Max pooling
@@ -186,5 +248,9 @@ void dense(bit input[M], bit16_t output[N], const bit weight[M][N]) {
     output[n] = (accum << 1) - M;
   }
 }
+
+
+
+
 
 #endif
