@@ -7,15 +7,15 @@
 source /opt/xilinx/Vivado/2019.2/scripts/vivado_hls/hls.tcl -notrace
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/xilinx/Vivado/2019.2/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'yy2297' on host 'en-ec-rhel-ecelinux-14.coecis.cornell.edu' (Linux_x86_64 version 4.18.0-553.22.1.el8_10.x86_64) on Sun Nov 03 11:22:35 EST 2024
+INFO: [HLS 200-10] For user 'yy2297' on host 'en-ec-rhel-ecelinux-01.coecis.cornell.edu' (Linux_x86_64 version 4.18.0-553.16.1.el8_10.x86_64) on Mon Nov 04 12:21:25 EST 2024
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
 INFO: [HLS 200-10] In directory '/home/yy2297/ece6775/lab4/ecelinux'
 Sourcing Tcl script 'run.tcl'
-INFO: [HLS 200-10] Creating and opening project '/home/yy2297/ece6775/lab4/ecelinux/bnn.prj'.
+INFO: [HLS 200-10] Opening and resetting project '/home/yy2297/ece6775/lab4/ecelinux/bnn.prj'.
 INFO: [HLS 200-10] Adding design file 'bnn.cpp' to the project
 INFO: [HLS 200-10] Adding test bench file 'bnn_test.cpp' to the project
 INFO: [HLS 200-10] Adding test bench file 'data' to the project
-INFO: [HLS 200-10] Creating and opening solution '/home/yy2297/ece6775/lab4/ecelinux/bnn.prj/solution1'.
+INFO: [HLS 200-10] Opening and resetting solution '/home/yy2297/ece6775/lab4/ecelinux/bnn.prj/solution1'.
 INFO: [HLS 200-10] Cleaning up the solution database.
 INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
@@ -25,244 +25,617 @@ INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
    Compiling ../../../../bnn.cpp in release mode
    Generating csim.exe
 Accuracy: 0.9
-digirec BNN         :      1 calls; 1126.774 msecs total time
+digirec BNN         :      1 calls; 1123.923 msecs total time
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
 INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
 INFO: [HLS 200-10] Analyzing design file 'bnn.cpp' ... 
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 19460 ; free virtual = 30283
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 19460 ; free virtual = 30283
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 1765 ; free virtual = 6756
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 1765 ; free virtual = 6756
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 19406 ; free virtual = 30237
+INFO: [XFORM 203-603] Inlining function 'sign<256>' into 'bnn_xcel' (bnn.cpp:80).
+INFO: [XFORM 203-603] Inlining function 'argmax' into 'bnn_xcel' (bnn.cpp:82).
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 1713 ; free virtual = 6705
 INFO: [HLS 200-10] Checking synthesizability ...
 INFO: [XFORM 203-602] Inlining function 'dense<512, 256>' into 'bnn_xcel' (bnn.cpp:79) automatically.
-INFO: [XFORM 203-602] Inlining function 'sign<256>' into 'bnn_xcel' (bnn.cpp:80) automatically.
 INFO: [XFORM 203-602] Inlining function 'dense<256, 10>' into 'bnn_xcel' (bnn.cpp:81) automatically.
-INFO: [XFORM 203-602] Inlining function 'argmax' into 'bnn_xcel' (bnn.cpp:82) automatically.
 WARNING: [SYNCHK 200-23] bnn.cpp:29: variable-indexed range selection may cause suboptimal QoR.
 INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 19396 ; free virtual = 30228
-INFO: [XFORM 203-502] Unrolling small iteration loop 'Loop-1.1.1.1.1.1' (./layer.h:67) in function 'conv<1, 16, 18>' automatically.
-INFO: [XFORM 203-502] Unrolling small iteration loop 'Loop-1' (./layer.h:22) in function 'pad<1, 16>' automatically.
-INFO: [XFORM 203-502] Unrolling small iteration loop 'Loop-1' (./layer.h:38) in function 'initialize_padded_memory<1, 18, 1>' automatically.
-INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1.1.1' (./layer.h:67) in function 'conv<1, 16, 18>' completely with a factor of 1.
-INFO: [HLS 200-489] Unrolling loop 'Loop-1' (./layer.h:22) in function 'pad<1, 16>' completely with a factor of 1.
-INFO: [HLS 200-489] Unrolling loop 'Loop-1' (./layer.h:38) in function 'initialize_padded_memory<1, 18, 1>' completely with a factor of 1.
-INFO: [XFORM 203-102] Partitioning array 'input_padded' (bnn.cpp:47) in dimension 1 automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 1703 ; free virtual = 6696
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'conv_y_loop' (./layer.h:70) in function 'conv<16, 32, 10>' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'conv_y_loop' (./layer.h:70) in function 'conv<1, 16, 18>' for pipelining.
+INFO: [XFORM 203-502] Unrolling small iteration loop 'pad_loop_m' (./layer.h:22) in function 'pad<1, 16>' automatically.
+INFO: [XFORM 203-502] Unrolling small iteration loop 'init_loop_m' (./layer.h:41) in function 'initialize_padded_memory<1, 18, 1>' automatically.
+INFO: [HLS 200-489] Unrolling loop 'sign_loop' (./layer.h:142) in function 'bnn_xcel' completely with a factor of 256.
+INFO: [HLS 200-489] Unrolling loop 'argmax_loop' (./layer.h:157) in function 'bnn_xcel' completely with a factor of 9.
+INFO: [HLS 200-489] Unrolling loop 'conv_c_loop' (./layer.h:73) in function 'conv<16, 32, 10>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1.1' (./layer.h:74) in function 'conv<16, 32, 10>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'conv_m_loop' (./layer.h:76) in function 'conv<16, 32, 10>' completely with a factor of 16.
+INFO: [HLS 200-489] Unrolling loop 'conv_c_loop' (./layer.h:73) in function 'conv<1, 16, 18>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1.1' (./layer.h:74) in function 'conv<1, 16, 18>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'conv_m_loop' (./layer.h:76) in function 'conv<1, 16, 18>' completely with a factor of 1.
+INFO: [HLS 200-489] Unrolling loop 'pad_loop_m' (./layer.h:22) in function 'pad<1, 16>' completely with a factor of 1.
+INFO: [HLS 200-489] Unrolling loop 'init_loop_m' (./layer.h:41) in function 'initialize_padded_memory<1, 18, 1>' completely with a factor of 1.
+INFO: [XFORM 203-102] Partitioning array 'weight.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.0.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.0.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.0.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.3' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.4' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.5' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.6' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.7' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.8' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.9' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.10' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.11' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.12' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.13' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.14' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.15' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.0.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.0.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.0.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.1.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.1.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.1.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.2.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.2.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.2.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.3.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.3.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.3.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.4.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.4.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.4.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.5.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.5.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.5.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.6.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.6.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.6.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.7.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.7.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.7.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.8.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.8.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.8.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.9.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.9.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.9.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.10.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.10.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.10.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.11.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.11.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.11.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.12.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.12.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.12.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.13.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.13.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.13.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.14.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.14.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.14.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.15.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.15.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'weight.15.2' in dimension 2 automatically.
 INFO: [XFORM 203-102] Partitioning array 'input' (bnn.cpp:20) in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2' in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.0.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.0.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.0.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.1.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.1.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.1.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.2.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.2.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.2.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.3' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.3.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.3.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.3.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.4' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.4.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.4.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.4.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.5' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.5.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.5.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.5.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.6' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.6.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.6.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.6.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.7' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.7.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.7.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.7.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.8' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.8.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.8.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.8.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.9' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.9.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.9.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.9.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.10' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.10.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.10.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.10.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.11' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.11.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.11.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.11.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.12' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.12.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.12.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.12.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.13' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.13.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.13.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.13.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.14' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.14.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.14.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.14.2' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.15' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.15.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.15.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv2.15.2' in dimension 2 automatically.
 INFO: [XFORM 203-102] Partitioning array 'w_conv1' in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv1.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv1.0.0' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv1.0.1' in dimension 2 automatically.
+INFO: [XFORM 203-102] Partitioning array 'w_conv1.0.2' in dimension 2 automatically.
+INFO: [XFORM 203-101] Partitioning array 'dense1.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'signed1' (bnn.cpp:60) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'dense2.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'w_fc2'  in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'w_fc1'  in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv1_pooled_padded' (bnn.cpp:51) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv2' (bnn.cpp:55) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded' (bnn.cpp:47) in dimension 2 with a block factor 10.
+INFO: [XFORM 203-101] Partitioning array 'conv1' (bnn.cpp:49) in dimension 2 with a block factor 8.
+INFO: [XFORM 203-101] Partitioning array 'conv1_pooled_padded' (bnn.cpp:51) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded' (bnn.cpp:47) in dimension 3 with a block factor 10.
+WARNING: [XFORM 203-104] Completely partitioning array 'signed1' (bnn.cpp:60) accessed through non-constant indices on dimension 1 (./layer.h:183:7), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+WARNING: [XFORM 203-104] Completely partitioning array 'dense1.V'  accessed through non-constant indices on dimension 1 (./layer.h:185:18), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+WARNING: [XFORM 203-104] Completely partitioning array 'w_fc1'  accessed through non-constant indices on dimension 2 (./layer.h:183:7), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.0' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.1' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.2' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.3' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.4' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.5' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.6' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.7' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.8' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.0.9' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.0' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.1' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.2' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.3' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.4' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.5' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.6' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.7' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.8' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.1.9' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.0' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.1' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.2' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.3' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.4' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.5' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.6' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.7' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.8' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.2.9' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.0' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.1' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.2' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.3' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.4' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.5' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.6' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.7' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.8' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.3.9' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.0' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.1' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.2' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.3' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.4' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.5' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.6' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.7' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.8' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.4.9' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.0' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.1' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.2' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.3' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.4' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.5' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.6' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.7' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.8' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.5.9' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.0' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.1' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.2' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.3' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.4' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.5' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.6' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.7' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.8' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.6.9' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.0' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.1' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.2' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.3' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.4' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.5' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.6' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.7' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.8' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.7.9' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.0' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.1' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.2' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.3' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.4' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.5' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.6' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.7' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.8' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.8.9' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.0' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.1' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.2' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.3' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.4' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.5' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.6' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.7' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.8' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'input_padded.9.9' (bnn.cpp:47) completely based on array size.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.0' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.1' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.2' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.3' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.4' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.5' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.6' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.7' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.8' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.9' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.0' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.1' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.2' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.3' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.4' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.5' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.6' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.7' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.8' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.9' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.0' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.1' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.2' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.3' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.4' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.5' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.6' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.7' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.8' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.9' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.0' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.1' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.2' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.3' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.4' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.5' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.6' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.7' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.8' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.9' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.0' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.1' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.2' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.3' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.4' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.5' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.6' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.7' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.8' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.9' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.0' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.1' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.2' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.3' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.4' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.5' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.6' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.7' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.8' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.9' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.0' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.1' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.2' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.3' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.4' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.5' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.6' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.7' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.8' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.9' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.0' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.1' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.2' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.3' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.4' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.5' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.6' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.7' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.8' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.9' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.0' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.1' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.2' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.3' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.4' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.5' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.6' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.7' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.8' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.9' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.0' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.1' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.2' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.3' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.4' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.5' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.6' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.7' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.8' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.9' (bnn.cpp:47) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.0' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.1' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.2' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.3' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.4' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.5' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.6' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.7' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.8' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.9' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.0' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.1' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.2' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.3' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.4' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.5' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.6' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.7' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.8' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.9' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.0' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.1' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.2' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.3' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.4' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.5' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.6' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.7' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.8' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.9' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.0' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.1' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.2' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.3' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.4' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.5' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.6' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.7' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.8' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.9' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.0' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.1' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.2' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.3' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.4' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.5' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.6' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.7' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.8' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.9' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.0' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.1' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.2' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.3' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.4' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.5' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.6' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.7' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.8' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.9' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.0' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.1' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.2' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.3' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.4' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.5' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.6' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.7' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.8' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.9' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.0' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.1' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.2' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.3' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.4' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.5' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.6' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.7' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.8' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.9' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.0' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.1' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.2' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.3' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.4' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.5' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.6' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.7' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.8' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.9' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.0' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.1' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.2' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.3' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.4' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.5' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.6' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.7' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.8' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.9' (bnn.cpp:47) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.0' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.1' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.2' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.3' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.4' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.5' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.6' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.7' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.8' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.0.9' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.0' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.1' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.2' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.3' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.4' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.5' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.6' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.7' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.8' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.1.9' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.0' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.1' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.2' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.3' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.4' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.5' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.6' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.7' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.8' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.2.9' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.0' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.1' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.2' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.3' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.4' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.5' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.6' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.7' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.8' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.3.9' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.0' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.1' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.2' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.3' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.4' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.5' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.6' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.7' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.8' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.4.9' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.0' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.1' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.2' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.3' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.4' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.5' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.6' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.7' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.8' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.5.9' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.0' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.1' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.2' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.3' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.4' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.5' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.6' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.7' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.8' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.6.9' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.0' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.1' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.2' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.3' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.4' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.5' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.6' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.7' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.8' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.7.9' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.0' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.1' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.2' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.3' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.4' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.5' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.6' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.7' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.8' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.8.9' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.0' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.1' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.2' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.3' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.4' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.5' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.6' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.7' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.8' (bnn.cpp:47) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'input_padded.9.9' (bnn.cpp:47) in dimension 3 completely.
+WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[0]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
+WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[1]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
+WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[2]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
+WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[3]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
+WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[4]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
+WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[5]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
+WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[6]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
+WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'output[7]' in function 'conv<1, 16, 18>' (./layer.h:82:27).
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (./layer.h:26:36) in function 'pad<1, 16>'... converting 254 basic blocks.
+INFO: [XFORM 203-603] Inlining function 'aesl_mux_load.256[512 x i1]P.i8.i64' into 'dense<512, 256>' (./layer.h:183).
+INFO: [XFORM 203-603] Inlining function 'aesl_mux_load.10[256 x i1]P.i4.i64' into 'dense<256, 10>' (./layer.h:183).
 INFO: [XFORM 203-602] Inlining function 'initialize_padded_memory<1, 18, 1>' into 'bnn_xcel' (bnn.cpp:48) automatically.
-INFO: [XFORM 203-602] Inlining function 'pad<1, 16>' into 'bnn_xcel' (bnn.cpp:65) automatically.
-INFO: [XFORM 203-602] Inlining function 'dense<512, 256>' into 'bnn_xcel' (bnn.cpp:79) automatically.
-INFO: [XFORM 203-602] Inlining function 'sign<256>' into 'bnn_xcel' (bnn.cpp:80) automatically.
-INFO: [XFORM 203-602] Inlining function 'dense<256, 10>' into 'bnn_xcel' (bnn.cpp:81) automatically.
-INFO: [XFORM 203-602] Inlining function 'argmax' into 'bnn_xcel' (bnn.cpp:82) automatically.
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 19389 ; free virtual = 30222
-WARNING: [XFORM 203-631] Renaming function 'initialize_padded_memory<16, 10, 0>' to 'initialize_padded_me' (./layer.h:38:30)
-INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:25:9)
-INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:99:9)
-INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:99:9)
-INFO: [HLS 200-472] Inferring partial write operation for 'input' (./layer.h:41:9)
-INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:116:9)
-INFO: [HLS 200-472] Inferring partial write operation for 'input[0]' (bnn.cpp:29:60)
-INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:73:27)
-INFO: [HLS 200-472] Inferring partial write operation for 'output' (./layer.h:73:27)
-INFO: [HLS 200-472] Inferring partial write operation for 'input_padded[0]' (./layer.h:41:9)
-INFO: [HLS 200-472] Inferring partial write operation for 'input_padded[0]' (./layer.h:25:9)
-INFO: [HLS 200-472] Inferring partial write operation for 'dense1.V' (./layer.h:170:18)
-INFO: [HLS 200-472] Inferring partial write operation for 'signed1' (./layer.h:131:18)
-INFO: [HLS 200-472] Inferring partial write operation for 'dense2.V' (./layer.h:170:18)
-INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1168.152 ; gain = 530.125 ; free physical = 19322 ; free virtual = 30157
-INFO: [HLS 200-10] Starting hardware synthesis ...
-INFO: [HLS 200-10] Synthesizing 'dut' ...
-WARNING: [SYN 201-103] Legalizing function name 'conv<1, 16, 18>' to 'conv_1_16_18_s'.
-WARNING: [SYN 201-103] Legalizing function name 'max_pool<16, 16>' to 'max_pool_16_16_s'.
-WARNING: [SYN 201-103] Legalizing function name 'pad<16, 8>' to 'pad_16_8_s'.
-WARNING: [SYN 201-103] Legalizing function name 'conv<16, 32, 10>' to 'conv_16_32_10_s'.
-WARNING: [SYN 201-103] Legalizing function name 'max_pool<32, 8>' to 'max_pool_32_8_s'.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'initialize_padded_me' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 26.52 seconds; current allocated memory: 232.101 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 232.251 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'conv_1_16_18_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 232.568 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 232.877 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'max_pool_16_16_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 233.059 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.05 seconds; current allocated memory: 233.285 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'pad_16_8_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 233.472 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 233.643 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'conv_16_32_10_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 233.937 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.08 seconds; current allocated memory: 234.325 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'max_pool_32_8_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 234.537 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.05 seconds; current allocated memory: 234.760 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'flatten' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.08 seconds; current allocated memory: 234.875 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 235.037 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'bnn_xcel' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 235.582 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.3 seconds; current allocated memory: 236.383 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'dut' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.26 seconds; current allocated memory: 236.755 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.08 seconds; current allocated memory: 236.957 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'initialize_padded_me' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Finished creating RTL model for 'initialize_padded_me'.
-INFO: [HLS 200-111]  Elapsed time: 0.17 seconds; current allocated memory: 237.350 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'conv_1_16_18_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SYN 201-210] Renamed object name 'conv_1_16_18_s_threshold_conv1_V' to 'conv_1_16_18_s_thbkb' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'conv_1_16_18_s_w_conv1_0' to 'conv_1_16_18_s_w_cud' due to the length limit 20
-INFO: [RTGEN 206-100] Finished creating RTL model for 'conv_1_16_18_s'.
-INFO: [HLS 200-111]  Elapsed time: 0.08 seconds; current allocated memory: 238.605 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'max_pool_16_16_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Finished creating RTL model for 'max_pool_16_16_s'.
-INFO: [HLS 200-111]  Elapsed time: 0.15 seconds; current allocated memory: 240.364 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'pad_16_8_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Finished creating RTL model for 'pad_16_8_s'.
-INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 241.591 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'conv_16_32_10_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SYN 201-210] Renamed object name 'conv_16_32_10_s_threshold_conv2_V' to 'conv_16_32_10_s_tdEe' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'conv_16_32_10_s_w_conv2' to 'conv_16_32_10_s_weOg' due to the length limit 20
-INFO: [RTGEN 206-100] Finished creating RTL model for 'conv_16_32_10_s'.
-INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 242.994 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'max_pool_32_8_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Finished creating RTL model for 'max_pool_32_8_s'.
-INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 245.043 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'flatten' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Finished creating RTL model for 'flatten'.
-INFO: [HLS 200-111]  Elapsed time: 0.12 seconds; current allocated memory: 246.279 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'bnn_xcel' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SYN 201-210] Renamed object name 'bnn_xcel_input_padded_0' to 'bnn_xcel_input_pafYi' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled' to 'bnn_xcel_conv1_pog8j' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv1_pooled_padded' to 'bnn_xcel_conv1_pohbi' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'bnn_xcel_conv2_pooled' to 'bnn_xcel_conv2_poibs' due to the length limit 20
-INFO: [RTGEN 206-100] Finished creating RTL model for 'bnn_xcel'.
-INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 248.453 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'dut' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-500] Setting interface mode on port 'dut/strm_in_V_V' to 'ap_fifo'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'dut/strm_out_V_V' to 'ap_fifo'.
-INFO: [RTGEN 206-500] Setting interface mode on function 'dut' to 'ap_ctrl_hs'.
-INFO: [RTGEN 206-100] Finished creating RTL model for 'dut'.
-INFO: [HLS 200-111]  Elapsed time: 0.42 seconds; current allocated memory: 251.904 MB.
-INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
-INFO: [HLS 200-789] **** Estimated Fmax: 127.32 MHz
-INFO: [RTMG 210-279] Implementing memory 'conv_1_16_18_s_thbkb_rom' using distributed ROMs.
-INFO: [RTMG 210-279] Implementing memory 'conv_1_16_18_s_w_cud_rom' using distributed ROMs.
-INFO: [RTMG 210-279] Implementing memory 'conv_16_32_10_s_tdEe_rom' using distributed ROMs.
-INFO: [RTMG 210-279] Implementing memory 'conv_16_32_10_s_weOg_rom' using auto ROMs.
-INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc1_rom' using auto ROMs.
-INFO: [RTMG 210-279] Implementing memory 'bnn_xcel_w_fc2_rom' using auto ROMs.
-INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_input_pafYi_ram (RAM)' using distributed RAMs.
-INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_conv1_ram (RAM)' using block RAMs.
-INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_conv1_pog8j_ram (RAM)' using block RAMs.
-INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_conv1_pohbi_ram (RAM)' using block RAMs.
-INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_conv2_ram (RAM)' using block RAMs.
-INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_conv2_poibs_ram (RAM)' using distributed RAMs.
-INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_dense1_V_ram (RAM)' using block RAMs.
-INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_signed1_ram (RAM)' using distributed RAMs.
-INFO: [RTMG 210-278] Implementing memory 'bnn_xcel_dense2_V_ram (RAM)' using distributed RAMs.
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:29 ; elapsed = 00:00:34 . Memory (MB): peak = 1296.152 ; gain = 658.125 ; free physical = 19248 ; free virtual = 30104
-INFO: [VHDL 208-304] Generating VHDL RTL for dut.
-INFO: [VLOG 209-307] Generating Verilog RTL for dut.
-INFO: [HLS 200-112] Total elapsed time: 33.55 seconds; peak allocated memory: 251.904 MB.
-INFO: [Common 17-206] Exiting vivado_hls at Sun Nov  3 11:23:09 2024...
+INFO: [XFORM 203-11] Balancing expressions in function 'conv<16, 32, 10>' (./layer.h:63)...143 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'conv<1, 16, 18>' (./layer.h:63)...8 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:07:01 ; elapsed = 00:07:07 . Memory (MB): peak = 1616.152 ; gain = 978.125 ; free physical = 1338 ; free virtual = 6348
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'dense_outer_loop' (./layer.h:178:32) in function 'dense<512, 256>' : 
+
+the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'dense_outer_loop' (./layer.h:178:32) in function 'dense<256, 10>' : 
+
+the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1.1' (./layer.h:68:19) in function 'conv<16, 32, 10>'.
+INFO: [XFORM 203-541] Flattening a loop nest 'conv_outer_loop' (./layer.h:67:32) in function 'conv<16, 32, 10>'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1.1' (./layer.h:68:19) in function 'conv<1, 16, 18>'.
+INFO: [XFORM 203-541] Flattening a loop nest 'conv_outer_loop' (./layer.h:67:32) in function 'conv<1, 16, 18>'.
+WARNING: [XFORM 203-631] Renaming function 'initialize_padded_memory<16, 10, 0>' to 'initialize_padded_me' (./layer.h:41:30)
+Stack dump:
+0.	Running pass 'Synthesis info analysis' on module '/home/yy2297/ece6775/lab4/ecelinux/bnn.prj/solution1/.autopilot/db/a.o.2.bc'.
+Abnormal program termination (11)
+Please check '/home/yy2297/ece6775/lab4/ecelinux/hs_err_pid3061691.log' for details

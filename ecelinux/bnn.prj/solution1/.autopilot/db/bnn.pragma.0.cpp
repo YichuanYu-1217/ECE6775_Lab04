@@ -10112,9 +10112,11 @@ bit32_t bnn_xcel(bit input[1][I_WIDTH1][I_WIDTH1]);
 # 19 "./layer.h"
 template <int M, int I>
 void pad(bit input[M][I][I], bit output[M][I + F_PAD][I + F_PAD]) {
-
+  pad_loop_m:
   for (int m = 0; m < M; m++) {
+    pad_loop_x:
     for (int x = 0; x < I; x++) {
+      pad_loop_y:
       for (int y = 0; y < I; y++) {
         output[m][y + F_PAD / 2][x + F_PAD / 2] = input[m][y][x];
       }
@@ -10129,25 +10131,44 @@ void pad(bit input[M][I][I], bit output[M][I + F_PAD][I + F_PAD]) {
 
 template <int M, int I, int C>
 void initialize_padded_memory(bit input[M][I][I]) {
+  init_loop_m:
   for (int m = 0; m < M; m++) {
+    init_loop_x:
     for (int x = 0; x < I; x++) {
+      init_loop_y:
       for (int y = 0; y < I; y++) {
         input[m][x][y] = C;
       }
     }
   }
 }
-# 57 "./layer.h"
+# 62 "./layer.h"
 template <int M, int N, int I>
 void conv(bit input[M][I][I], bit output[N][I - F + 1][I - F + 1],
           const bit8_t threshold[N], const bit weight[M][N][F][F]) {
+#pragma HLS ARRAY_PARTITION variable=&input block factor=10 dim=2
+# 64 "./layer.h"
+
+#pragma HLS ARRAY_PARTITION variable=&input block factor=10 dim=3
+# 64 "./layer.h"
+
+#pragma HLS ARRAY_PARTITION variable=&output block factor=8 dim=2
+# 64 "./layer.h"
+
   int num_accum = F * F * M;
+  conv_outer_loop:
   for (int n = 0; n < N; n++) {
     for (int x = 0; x < I - F + 1; x++) {
+      conv_y_loop:
       for (int y = 0; y < I - F + 1; y++) {
+#pragma HLS PIPELINE II=1
+# 70 "./layer.h"
+
         bit16_t accum = 0;
+        conv_c_loop:
         for (int c = 0; c < F; c++) {
           for (int r = 0; r < F; r++) {
+            conv_m_loop:
             for (int m = 0; m < M; m++) {
               accum += input[m][y + r][x + c] == weight[m][n][r][c];
             }
@@ -10159,14 +10180,15 @@ void conv(bit input[M][I][I], bit output[N][I - F + 1][I - F + 1],
     }
   }
 }
-# 86 "./layer.h"
+# 95 "./layer.h"
 template <int M, int I>
 void max_pool(bit input[M][I][I], bit output[M][I / 2][I / 2]) {
-
+  max_pool_m_loop:
   for (int m = 0; m < M; m++) {
     for (int x = 0; x < I / 2; x++) {
       for (int y = 0; y < I / 2; y++) {
         bit max = 0;
+        max_pool_c_loop:
         for (int c = 0; c < 2; c++) {
           for (int r = 0; r < 2; r++) {
             if (input[m][2 * y + r][2 * x + c])
@@ -10186,6 +10208,7 @@ void max_pool(bit input[M][I][I], bit output[M][I / 2][I / 2]) {
 
 
 void flatten(bit input[O_CHANNEL2][O_WIDTH][O_WIDTH], bit output[I_UNITS1]) {_ssdm_SpecArrayDimSize(input, 32);_ssdm_SpecArrayDimSize(output, 512);
+  flatten_outer_loop:
   for (int c = 0; c < O_CHANNEL2; c++) {
     for (int y = 0; y < O_WIDTH; y++) {
       for (int x = 0; x < O_WIDTH; x++) {
@@ -10195,9 +10218,22 @@ void flatten(bit input[O_CHANNEL2][O_WIDTH][O_WIDTH], bit output[I_UNITS1]) {_ss
     }
   }
 }
-# 129 "./layer.h"
+# 140 "./layer.h"
 template <int M> void sign(bit16_t input[M], bit output[M]) {
+#pragma HLS ARRAY_PARTITION variable=&input complete dim=1
+# 140 "./layer.h"
+
+#pragma HLS ARRAY_PARTITION variable=&output complete dim=1
+# 140 "./layer.h"
+
+#pragma HLS INLINE
+# 140 "./layer.h"
+
+  sign_loop:
   for (int m = 0; m < M; m++) {
+#pragma HLS UNROLL
+# 142 "./layer.h"
+
     output[m] = (input[m] > 0) ? 1 : 0;
   }
 }
@@ -10209,9 +10245,19 @@ template <int M> void sign(bit16_t input[M], bit output[M]) {
 
 
 bit4_t argmax(bit16_t input[NUM_DIGITS]) {_ssdm_SpecArrayDimSize(input, 10);
+#pragma HLS ARRAY_PARTITION variable=&input complete dim=1
+# 153 "./layer.h"
+
+#pragma HLS INLINE
+# 153 "./layer.h"
+
   bit16_t max = input[0];
   bit4_t max_id = 0;
+  argmax_loop:
   for (int i = 1; i < NUM_DIGITS; i++) {
+#pragma HLS UNROLL
+# 157 "./layer.h"
+
     if (input[i] > max) {
       max = input[i];
       max_id = i;
@@ -10219,12 +10265,23 @@ bit4_t argmax(bit16_t input[NUM_DIGITS]) {_ssdm_SpecArrayDimSize(input, 10);
   }
   return max_id;
 }
-# 162 "./layer.h"
+# 175 "./layer.h"
 template <int M, int N>
 void dense(bit input[M], bit16_t output[N], const bit weight[M][N]) {
+#pragma HLS ARRAY_PARTITION variable=&weight complete dim=2
+# 176 "./layer.h"
+
+#pragma HLS INLINE region off
+# 176 "./layer.h"
+
+  dense_outer_loop:
   for (int n = 0; n < N; n++) {
     bit16_t accum = 0;
+    dense_inner_loop:
     for (int m = 0; m < M; m++) {
+#pragma HLS PIPELINE II=1
+# 181 "./layer.h"
+
       int w_index = m * N + n;
       accum += input[m] == weight[m][n];
     }

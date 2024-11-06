@@ -1,4 +1,7 @@
 <AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" projectType="C/C++" name="bnn.prj" top="dut">
+    <Simulation argv="">
+        <SimFlow name="csim" setup="false" optimizeCompile="true" clean="false" ldflags="" mflags=""/>
+    </Simulation>
     <includePaths/>
     <libraryFlag/>
     <files>
@@ -9,8 +12,5 @@
     <solutions>
         <solution name="solution1" status=""/>
     </solutions>
-    <Simulation argv="">
-        <SimFlow name="csim" setup="false" optimizeCompile="true" clean="false" ldflags="" mflags=""/>
-    </Simulation>
 </AutoPilot:project>
 
